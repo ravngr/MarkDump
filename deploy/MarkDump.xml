@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project MarkTool">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="C:/Chris/Dropbox/University/Tools/MarkDump/deploy/MarkDump.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="com.ravngr.marktool.markdump.MarkDump"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="C:/Chris/Dropbox/University/Tools/MarkDump/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Chris/Dropbox/University/Tools/MarkDump/lib/jcommander-1.7/jcommander-1.7.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Chris/Dropbox/University/Tools/MarkDump/lib/poi-3.9/poi-3.9-20121203.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Chris/Dropbox/University/Tools/MarkDump/lib/poi-3.9/poi-excelant-3.9-20121203.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Chris/Dropbox/University/Tools/MarkDump/lib/poi-3.9/poi-ooxml-3.9-20121203.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Chris/Dropbox/University/Tools/MarkDump/lib/poi-3.9/poi-ooxml-schemas-3.9-20121203.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Chris/Dropbox/University/Tools/MarkDump/lib/poi-3.9/poi-scratchpad-3.9-20121203.jar"/>
+        </jar>
+    </target>
+</project>

@@ -1,6 +1,7 @@
 package com.ravngr.marktool.util;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 public class CellAddress {
@@ -22,6 +23,18 @@ public class CellAddress {
 	}
 	
 	public Cell getCell(Sheet sheet) {
-		return sheet.getRow(row).getCell(column);
+		assert sheet != null;
+		
+		Row r = sheet.getRow(row);
+		
+		if (r == null)
+			r = sheet.createRow(row);
+		
+		Cell c = r.getCell(column);
+		
+		if (c == null)
+			c = r.createCell(column);
+		
+		return c;
 	}
 }

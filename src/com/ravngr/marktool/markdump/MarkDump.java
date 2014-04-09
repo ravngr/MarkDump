@@ -11,6 +11,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.ParameterException;
 import com.ravngr.marktool.util.CellAddress;
 
 public class MarkDump {
@@ -18,7 +20,9 @@ public class MarkDump {
 	
 	public MarkDump(MarkDumpOptions options) {
 		this.options = options;
-		
+	}
+	
+	public void run() {
 		PrintWriter stream;
 		
 		if (options.getFile() != null)
@@ -116,7 +120,6 @@ public class MarkDump {
 			}
 			
 			stream.println(output);
-			//System.out.println(output);
 		} catch (InvalidFormatException e) {
 			if (!options.isQuiet())
 				System.err.println("Skipping " + file.getAbsolutePath() + " due to bad file format. " + e.getMessage());
@@ -126,5 +129,27 @@ public class MarkDump {
 				System.err.println("Skipping " + file.getAbsolutePath() + " file could not be opened. " + e.getMessage());
 			//e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args) {
+		MarkDumpOptions options = new MarkDumpOptions();
+		
+		JCommander jcom = new JCommander(options);
+		
+		// Parse command line variables
+		try {
+			jcom.parse(args);
+		} catch (ParameterException e) {
+			System.err.println(e.getMessage());
+			return;
+		}
+		
+		if (options.getMarkingList() == null || options.isHelp()) {
+			jcom.usage();
+			return;
+		}
+		
+		MarkDump m = new MarkDump(options);
+		m.run();
 	}
 }
