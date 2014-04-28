@@ -10,7 +10,7 @@ public class CellAddressListConverter implements IStringConverter<List<CellAddre
 	@Override
 	public List<CellAddress> convert(String value) {
 		CellAddressConverter converter = new CellAddressConverter();
-		List<CellAddress> list = new ArrayList<>();
+		List<CellAddress> list = new ArrayList<CellAddress>();
 		
 		for (String a : value.split(",")) {
 			CellAddress ca = converter.convert(a);
